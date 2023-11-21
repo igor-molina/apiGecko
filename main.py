@@ -6,14 +6,14 @@ url = 'https://api.coingecko.com/api/v3/'
 def get_coin_list_id():
     r = requests.get(url+"coins/list")
     list_coins = r.json()
-    id_list = [coin['id'] for coin in list_coins[:1000]]
+    id_list = [coin['id'] for coin in list_coins[:2]]
     return ",".join(id_list)
 
 
 def supported_vs_currencies():
     r = requests.get(url+"simple/supported_vs_currencies")
     svc_list = r.json()
-    svc_list = svc_list[:1000]
+    svc_list = svc_list[:2]
     return ",".join(svc_list)
 
 
@@ -37,5 +37,4 @@ def get_coin_markets(svc, id_list):
 
 svc_string = supported_vs_currencies()
 coins_id_list = get_coin_list_id()
-#print(coins_id_list)
 get_coin_markets(svc_string, coins_id_list)
